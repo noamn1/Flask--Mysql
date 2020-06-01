@@ -36,6 +36,13 @@ def add_person():
     return resp
 
 
+@app.route("/sproc")
+def call_stored_procedure():
+    dataLayer.call_stored_procedure()
+    resp = app.response_class(response=json.dumps({"status": "ok"}), status=200, mimetype="application/json")
+    return resp
+
+
 @atexit.register
 def goodbye():
     dataLayer.shutdown_db()
